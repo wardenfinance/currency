@@ -24,23 +24,28 @@ type TickerHistory = Array<{
 }>;
 
 /**
- * A ticker between a cryptocurrency and a fiat currency that updates
+ * A ticker between a base and a quote currency that updates
  * at a specified interval using a provided request function.
  */
 class Ticker {
-    private readonly request: () => Promise<number | undefined>;
-    private readonly options: TickerOptions;
-    private interval?: NodeJS.Timeout;
-    private _fetching: boolean = false;
-    private _price: number = 0;
-    private _history: Array<Record<number, Date>> = [];
+    protected readonly request: () => Promise<number | undefined>;
+    protected readonly options: TickerOptions;
+
+    protected interval?: NodeJS.Timeout;
+
+    protected _fetching: boolean = false;
+    protected _history: TickerHistory = [];
 
     protected update(): void {
         if (!this._fetching) {
+            this._fetching = true;
             this.request()
                 .then(price => {
                     if (price) {
-                        this._price = price;
+                        this.history.push({
+                            price,
+                            date: new Date()
+                        });
                         if (this.options.onUpdate) this.options.onUpdate(price);
                     }
                 })
@@ -55,19 +60,19 @@ class Ticker {
 
     /**
      * Create a new ticker instance
-     * @param crypto Cryptocurrency to use
-     * @param fiat Fiat currency to use
+     * @param base Base currency to use
+     * @param quote Quote currency to use
      * @param request Implementation for retrieving prices
      * @param options Define additional options for the ticker
      */
-    constructor(
-        crypto: CryptoCurrencies,
-        fiat: FiatCurrencies,
+    public constructor(
+        base: CryptoCurrencies | FiatCurrencies,
+        quote: CryptoCurrencies | FiatCurrencies,
         request: () => Promise<number | undefined>,
         options?: Partial<TickerOptions>
     ) {
-        this.crypto = crypto;
-        this.fiat = fiat;
+        this.base = base;
+        this.quote = quote;
         this.request = request;
         this.options = {
             refreshMs: 1000,
@@ -75,18 +80,16 @@ class Ticker {
         }
     }
 
-    public readonly crypto: CryptoCurrencies;
-    public readonly fiat: FiatCurrencies;
+    public readonly base: CryptoCurrencies | FiatCurrencies;
+    public readonly quote: CryptoCurrencies | FiatCurrencies;
 
     get fetching() { return this._fetching; }
-    get price() { return this._price; }
+    get price() { return this._history[this._history.length - 1].price; }
     get history() { return this._history; }
 
     public start(): void {
         if (!this.interval) {
-            this.interval = setInterval(() => {
-                this.update();
-            }, this.options.refreshMs);
+            this.interval = setInterval(this.update, this.options.refreshMs);
         }
     }
 
