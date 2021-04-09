@@ -28,6 +28,29 @@ type TickerHistory = Array<{
  * at a specified interval using a provided request function.
  */
 class Ticker {
+    private readonly request: () => Promise<number>;
+    private readonly options: TickerOptions;
+    private interval?: NodeJS.Timeout;
+    private _fetching: boolean = false;
+    private _price: number = 0;
+    private _history: Array<Record<number, Date>> = [];
+
+    protected update(): void {
+        if (!this._fetching) {
+            this.request()
+                .then(price => {
+                    this._price = price;
+                    if (this.options.onUpdate) this.options.onUpdate(price);
+                })
+                .catch(e => {
+                    if (this.options.onError) this.options.onError(e);
+                })
+                .finally(() => {
+                    this._fetching = false;
+                });
+        }
+    }
+
     /**
      * Create a new ticker instance
      * @param crypto Cryptocurrency to use
@@ -50,32 +73,12 @@ class Ticker {
         }
     }
 
-    private readonly crypto: CryptoCurrencies;
-    private readonly fiat: FiatCurrencies;
-    private readonly request: () => Promise<number>;
-    private readonly options: TickerOptions;
+    public readonly crypto: CryptoCurrencies;
+    public readonly fiat: FiatCurrencies;
 
-    protected interval?: NodeJS.Timeout;
-
-    protected _fetching: boolean = false;
-    protected _price: number = 0;
-    protected _history: Array<Record<number, Date>> = [];
-
-    protected update(): void {
-        if (!this._fetching) {
-            this.request()
-                .then(price => {
-                    this._price = price;
-                    if (this.options.onUpdate) this.options.onUpdate(price);
-                })
-                .catch(e => {
-                    if (this.options.onError) this.options.onError(e);
-                })
-                .finally(() => {
-                    this._fetching = false;
-                });
-        }
-    }
+    get fetching() { return this._fetching; }
+    get price() { return this._price; }
+    get history() { return this._history; }
 
     public start(): void {
         if (!this.interval) {
@@ -85,9 +88,12 @@ class Ticker {
         }
     }
 
-    get fetching() { return this._fetching; }
-    get price() { return this._price; }
-    get history() { return this._history; }
+    public stop(): void {
+        if (this.interval) {
+            clearInterval(this.interval);
+            this.interval = undefined;
+        }
+    }
 }
 
 export default Ticker;
