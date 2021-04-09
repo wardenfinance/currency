@@ -1,13 +1,13 @@
 {
   "name": "@wardenfinance/currency",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "private": true,
   "description": "JavaScript library for dealing with different currencies.",
   "main": "dist/index.js",
   "scripts": {
+    "prebuild": "rimraf ./dist",
     "build": "tsc",
-    "postbuild": "node ./scripts/postbuild.js",
-    "test": "jest"
+    "postbuild": "node ./scripts/postbuild.js"
   },
   "repository": {
     "type": "git",
@@ -26,10 +26,8 @@
   },
   "homepage": "https://github.com/wardenfinance/currency#readme",
   "devDependencies": {
-    "@types/jest": "^26.0.22",
     "@types/node": "^14.14.37",
-    "jest": "^26.6.3",
-    "ts-jest": "^26.5.4",
+    "rimraf": "^3.0.2",
     "typescript": "^4.2.4"
   }
 }
