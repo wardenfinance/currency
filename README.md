@@ -8,11 +8,19 @@ JavaScript library for dealing with different currencies.
 [![Node.js CI](https://github.com/wardenfinance/currency/actions/workflows/node.js.yml/badge.svg)](https://github.com/wardenfinance/currency/actions/workflows/node.js.yml)
 [![CodeQL](https://github.com/wardenfinance/currency/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/wardenfinance/currency/actions/workflows/codeql-analysis.yml)
 
-## Package
+## Installation
+
+You can install _currency_ via **npm** or **yarn**
 
 ```sh
- npm install --save @wardenfinance/currency
+npm install --save @wardenfinance/currency
 ```
+
+```sh
+yarn add @wardenfinance/currency
+```
+
+[View on npmjs.com](https://npmjs.com/package/@wardenfinance/currency)
 
 ## Usage
 
@@ -26,8 +34,11 @@ import {
     FiatCurrencies
 } from '@wardenfinance/currency';
 
-const btc = CryptoCurrencies.BTC;
-const usd = FiatCurrencies.USD;
+const bitcoin = CryptoCurrencies.BTC; // "Bitcoin"
+const btc = CryptoCurrencies[CryptoCurrencies.BTC]; // "BTC"
+
+const usDollar = FiatCurrencies.USD; // "US Dollar"
+const usd = FiatCurrencies[FiatCurrencies.USD]; // "USD"
 ```
 
 ### Tickers
@@ -72,3 +83,17 @@ const xtz_usd = new Ticker(
 
 xtz_usd.start(); // start the ticker
 ```
+
+## Contributing
+
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b {username}/my-feature`)
+3. Commit your changes (`git commit -m 'Add some feature'`)
+4. Push to the branch (`git push origin {username}/my-feature`)
+5. [Open a pull request](https://github.com/wardenfinance/currency/pulls)
+
+## License
+
+Distributed under the MIT License. See [LICENSE](https://github.com/wardenfinance/currency/tree/main/LICENSE) for more information.
