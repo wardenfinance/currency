@@ -1,3 +1,9 @@
+# NPM
+.npmrc
+
+# macOS
+.DS_Store
+
 # Logs
 logs
 *.log
