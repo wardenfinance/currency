@@ -28,7 +28,7 @@ type TickerHistory = Array<{
  * at a specified interval using a provided request function.
  */
 class Ticker {
-    private readonly request: () => Promise<number>;
+    private readonly request: () => Promise<number | undefined>;
     private readonly options: TickerOptions;
     private interval?: NodeJS.Timeout;
     private _fetching: boolean = false;
@@ -39,8 +39,10 @@ class Ticker {
         if (!this._fetching) {
             this.request()
                 .then(price => {
-                    this._price = price;
-                    if (this.options.onUpdate) this.options.onUpdate(price);
+                    if (price) {
+                        this._price = price;
+                        if (this.options.onUpdate) this.options.onUpdate(price);
+                    }
                 })
                 .catch(e => {
                     if (this.options.onError) this.options.onError(e);
@@ -61,7 +63,7 @@ class Ticker {
     constructor(
         crypto: CryptoCurrencies,
         fiat: FiatCurrencies,
-        request: () => Promise<number>,
+        request: () => Promise<number | undefined>,
         options?: Partial<TickerOptions>
     ) {
         this.crypto = crypto;
