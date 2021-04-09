@@ -1,4 +1,4 @@
-enum Cryptocurrencies {
+enum CryptoCurrencies {
     ADA,
     ALGO,
     ATOM,
@@ -19,4 +19,4 @@ enum Cryptocurrencies {
     XRP
 }
 
-export default Cryptocurrencies;
+export default CryptoCurrencies;
