@@ -41,49 +41,6 @@ const usDollar = FiatCurrencies.USD; // "US Dollar"
 const usd = FiatCurrencies[FiatCurrencies.USD]; // "USD"
 ```
 
-### Tickers
-
-Tickers are class instances that allow you to fetch the fiat price of a cryptocurrency.
-
-```typescript
-import {
-    CryptoCurrencies,
-    FiatCurrencies,
-    Ticker
-} from '@wardenfinance/currency';
-
-const xtz_usd = new Ticker(
-    CryptoCurrencies.XTZ,
-    FiatCurrencies.USD,
-    () => {
-        return new Promise<number | undefined>(resolve => {
-            fetch('https://api.tzstats.com/markets/tickers', {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-                .then(res => res.json())
-                .then(json => {
-                    const xtzUsd = json.find(o => o['pair'] === 'XTZ_USD' && o['exchange'] === 'coinbasepro');
-                    if (xtzUsd) resolve(xtzUsd['last'] as number);
-                });
-        });
-    },
-    {
-        refreshMs: 10000,
-        onUpdate: (price => {
-            console.log(price);
-        }),
-        onError: (e => {
-            console.error(e);
-        })
-    }
-);
-
-xtz_usd.start(); // start the ticker
-```
-
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
