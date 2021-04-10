@@ -1,13 +1,13 @@
 {
   "name": "@wardenfinance/currency",
-  "version": "0.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "JavaScript library for dealing with different currencies.",
   "main": "dist/index.js",
   "scripts": {
-    "prebuild": "rimraf ./dist",
-    "build": "tsc",
-    "postbuild": "node ./scripts/postbuild.js"
+    "prebuild": "rimraf dist",
+    "build": "tsc -p tsconfig.json",
+    "postbuild": "node scripts/postbuild.js"
   },
   "repository": {
     "type": "git",
@@ -18,7 +18,11 @@
     "cryptocurrency"
   ],
   "contributors": [
-    "Matthew Downs <matthew.downsc@gmail.com>"
+    {
+      "name": "Matthew Downs",
+      "email": "matthew@warden.finance",
+      "url": "https://github.com/matthewdowns"
+    }
   ],
   "license": "MIT",
   "bugs": {
