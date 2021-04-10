@@ -1,6 +1,6 @@
 {
   "name": "@wardenfinance/currency",
-  "version": "1.0.1",
+  "version": "0.0.0",
   "private": true,
   "description": "JavaScript library for dealing with different currencies.",
   "main": "dist/index.js",
