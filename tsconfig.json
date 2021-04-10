@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "target": "ESNEXT",
-        "module": "ESNEXT",
+        "module": "commonjs",
         "declaration": true,
         "declarationMap": true,
         "sourceMap": true,
@@ -10,10 +10,6 @@
         "removeComments": false,
         "strict": true,
         "moduleResolution": "node",
-        "baseUrl": "./",
-        "paths": {
-            "~types/*": ["./src/types/*"]
-        },
         "esModuleInterop": true,
         "resolveJsonModule": true,
         "experimentalDecorators": true,
