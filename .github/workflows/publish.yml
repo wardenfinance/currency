@@ -28,7 +28,7 @@ jobs:
     - name: Setup .npmrc
       run: |
         echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> .npmrc
-        echo "@wardenfinance/orm:registry=https://npm.pkg.github.com" >> .npmrc
+        echo "@wardenfinance:registry=https://npm.pkg.github.com" >> .npmrc
         echo "access=public"
       working-directory: ./dist
     - name: Publish package
