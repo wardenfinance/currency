@@ -4,7 +4,6 @@ JavaScript library for dealing with different currencies.
 ![Version](https://img.shields.io/github/package-json/v/wardenfinance/currency)
 ![License](https://img.shields.io/github/license/wardenfinance/currency)
 ![David](https://img.shields.io/david/wardenfinance/currency)
-
 [![Node.js CI](https://github.com/wardenfinance/currency/actions/workflows/node.js.yml/badge.svg)](https://github.com/wardenfinance/currency/actions/workflows/node.js.yml)
 [![CodeQL](https://github.com/wardenfinance/currency/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/wardenfinance/currency/actions/workflows/codeql-analysis.yml)
 
@@ -13,14 +12,12 @@ JavaScript library for dealing with different currencies.
 You can install _currency_ via **npm** or **yarn**
 
 ```sh
-npm install --save @wardenfinance/currency
+npm install --save https://github.com/wardenfinance/currency
 ```
 
 ```sh
-yarn add @wardenfinance/currency
+yarn add https://github.com/wardenfinance/currency
 ```
-
-[View on npmjs.com](https://npmjs.com/package/@wardenfinance/currency)
 
 ## Usage
 
