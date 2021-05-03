@@ -3,7 +3,6 @@ JavaScript library for dealing with different currencies.
 
 ![Version](https://img.shields.io/github/package-json/v/wardenfinance/currency)
 ![License](https://img.shields.io/github/license/wardenfinance/currency)
-![David](https://img.shields.io/david/wardenfinance/currency)
 [![Node.js CI](https://github.com/wardenfinance/currency/actions/workflows/node.js.yml/badge.svg)](https://github.com/wardenfinance/currency/actions/workflows/node.js.yml)
 [![CodeQL](https://github.com/wardenfinance/currency/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/wardenfinance/currency/actions/workflows/codeql-analysis.yml)
 
