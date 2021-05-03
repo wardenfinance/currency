@@ -12,7 +12,7 @@ JavaScript library for dealing with different currencies.
 You can install _currency_ via **npm** or **yarn**
 
 ```sh
-npm install --save https://github.com/wardenfinance/currency
+npm install https://github.com/wardenfinance/currency
 ```
 
 ```sh
