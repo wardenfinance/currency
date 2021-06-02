@@ -29,15 +29,14 @@
     "email": "matthew@warden.finance",
     "url": "https://github.com/matthewdowns"
   },
-  "contributors": [
-    
-  ],
+  "contributors": [],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/wardenfinance/currency/issues"
   },
   "homepage": "https://github.com/wardenfinance/currency#readme",
   "devDependencies": {
+    "@types/jest": "^26.0.23",
     "@types/node": "^15.0.2",
     "@typescript-eslint/eslint-plugin": "^4.26.0",
     "@typescript-eslint/parser": "^4.26.0",

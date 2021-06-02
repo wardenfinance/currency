@@ -8,10 +8,15 @@ JavaScript library for utilizing fiat and crypto currencies.
 
 ## Installation
 
-Install _@wardenfinance/currency_ via **npm**
+Install _@wardenfinance/currency_ via **NPM**
 
 ```sh
 npm install @wardenfinance/currency --save
+```
+
+Install _@wardenfinance/currency_ via **GitHub**
+```sh
+npm install https://github.com/wardenfinance/currency --save
 ```
 
 ## Usage
@@ -31,6 +36,47 @@ const btc = CryptoCurrencies[CryptoCurrencies.BTC]; // "BTC"
 
 const usDollar = FiatCurrencies.USD; // "US Dollar"
 const usd = FiatCurrencies[FiatCurrencies.USD]; // "USD"
+```
+
+### Tickers
+
+If you provide your own implementation for fetching base/quote prices, you can use the Ticker class like so:
+
+```typescript
+import {
+    CryptoCurrencies,
+    FiatCurrencies,
+    Ticker
+} from '@wardenfinance/currency';
+
+const btcUsdTicker = new Ticker({
+    base: CryptoCurrencies.BTC,
+    quote: FiatCurrencies.USD,
+    frequency: 1000, // get current quote price every 1000 milliseconds
+    request: () => {
+        // ... some implementation to get current price
+        return 50000.00;
+    },
+    onError: (e: unknown) => {
+        console.error(e);
+    }
+});
+
+btcUsdTicker.start();
+
+setTimeout(() => {
+    // get current ticker price
+    const btcUsdTickerPrice = btcUsdTicker.price;
+
+    // get ticker history
+    const btcUsdTickerHistory = btcUsdTicker.history;
+
+    // get whether or not the ticker is active
+    const btcUsdTickerActive = btcUsdTicker.active;
+
+    // stop the ticker from making any new requests
+    btcUsdTicker.stop();
+}, 5000);
 ```
 
 ## Contributing
