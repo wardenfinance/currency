@@ -8,7 +8,7 @@ type TickerConfig = {
     frequency?: number;
     request: () => Promise<number>;
     onUpdate?: (price: number) => void;
-    onError?: (e: any) => void;
+    onError?: (e: unknown) => void;
 }
 
 type TickerHistory = Array<{
@@ -26,13 +26,13 @@ class Ticker {
     private readonly _frequency: number;
     private readonly _request: () => Promise<number>;
     private readonly _onUpdate?: (price: number) => void;
-    private readonly _onError?: (e: any) => void;
+    private readonly _onError?: (e: unknown) => void;
 
-    private _price: number = 0;
+    private _price = 0;
     private _history: TickerHistory = [];
 
     private _interval: NodeJS.Timeout | undefined = undefined;
-    private _fetching: boolean = false;
+    private _fetching = false;
 
     constructor(config: TickerConfig) {
         const baseSymbol = getCurrencySymbol(config.base);

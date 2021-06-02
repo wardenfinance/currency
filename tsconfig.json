@@ -12,6 +12,12 @@
         "moduleResolution": "node",
         "esModuleInterop": true,
         "resolveJsonModule": true,
+        "baseUrl": "./",
+        "paths": {
+            "~lib/*": ["./src/lib/*"],
+            "~types/*": ["./src/types/*"],
+            "~utils/*": ["./src/utils/*"]
+        },
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "skipLibCheck": true,

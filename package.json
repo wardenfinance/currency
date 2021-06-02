@@ -5,6 +5,9 @@
   "description": "JavaScript library for dealing with different currencies.",
   "main": "dist/index.js",
   "scripts": {
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "test": "jest",
     "prebuild": "rimraf dist",
     "build": "tsc -p tsconfig.json",
     "postbuild": "node scripts/postbuild.js"
@@ -15,14 +18,19 @@
   },
   "keywords": [
     "currency",
-    "cryptocurrency"
+    "cryptocurrency",
+    "cryptocurrencies",
+    "cryptocurrency-price-ticker",
+    "fiat-currencies",
+    "fiat-currency"
   ],
+  "author": {
+    "name": "Matthew Downs",
+    "email": "matthew@warden.finance",
+    "url": "https://github.com/matthewdowns"
+  },
   "contributors": [
-    {
-      "name": "Matthew Downs",
-      "email": "matthew@warden.finance",
-      "url": "https://github.com/matthewdowns"
-    }
+    
   ],
   "license": "MIT",
   "bugs": {
@@ -31,7 +39,12 @@
   "homepage": "https://github.com/wardenfinance/currency#readme",
   "devDependencies": {
     "@types/node": "^15.0.2",
+    "@typescript-eslint/eslint-plugin": "^4.26.0",
+    "@typescript-eslint/parser": "^4.26.0",
+    "eslint": "^7.27.0",
+    "jest": "^27.0.3",
     "rimraf": "^3.0.2",
+    "ts-jest": "^27.0.2",
     "typescript": "^4.2.4"
   }
 }
