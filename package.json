@@ -2,7 +2,7 @@
   "name": "@wardenfinance/currency",
   "version": "1.0.0",
   "private": true,
-  "description": "JavaScript library for dealing with different currencies.",
+  "description": "JavaScript library for utilizing fiat and crypto currencies.",
   "main": "dist/index.js",
   "scripts": {
     "lint": "eslint . --ext .ts",

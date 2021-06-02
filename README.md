@@ -1,5 +1,5 @@
 # currency
-JavaScript library for dealing with different currencies.
+JavaScript library for utilizing fiat and crypto currencies.
 
 ![Version](https://img.shields.io/github/package-json/v/wardenfinance/currency)
 ![License](https://img.shields.io/github/license/wardenfinance/currency)
@@ -8,14 +8,10 @@ JavaScript library for dealing with different currencies.
 
 ## Installation
 
-You can install _currency_ via **npm** or **yarn**
+Install _@wardenfinance/currency_ via **npm**
 
 ```sh
-npm install https://github.com/wardenfinance/currency
-```
-
-```sh
-yarn add https://github.com/wardenfinance/currency
+npm install @wardenfinance/currency --save
 ```
 
 ## Usage
