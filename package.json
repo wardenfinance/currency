@@ -1,6 +1,6 @@
 {
   "name": "@wardenfinance/currency",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "JavaScript library for utilizing fiat and crypto currencies.",
   "main": "dist/index.js",
