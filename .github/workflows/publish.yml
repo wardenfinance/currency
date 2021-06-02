@@ -25,14 +25,25 @@ jobs:
       run: npm ci
     - name: Build
       run: npm run build
+    - name: Setup .npmrc for publishing to NPM
+      run: |
+        echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }} >> .npmrc
+        echo "registry=https://registry.npmjs.org/" >> .npmrc
+        echo "always-auth=true" >> .npmrc
+        echo "access=public" >> .npmrc
+      working-directory: ./dist
     - name: Publish NPM package
       run: npm publish
       working-directory: ./dist
-    - name: Setup .npmrc
+    - name: Delete existing .npmrc file
+      run: rm .npmrc
+      working-directory: ./dist
+    - name: Setup .npmrc for publishing to GitHub
       run: |
         echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> .npmrc
         echo "@wardenfinance:registry=https://npm.pkg.github.com" >> .npmrc
-        echo "access=public"
+        echo "always-auth=true" >> .npmrc
+        echo "access=public" >> .npmrc
       working-directory: ./dist
     - name: Publish GitHub package
       run: npm publish
