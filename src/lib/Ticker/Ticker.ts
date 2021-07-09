@@ -7,7 +7,6 @@ type TickerConfig = {
     quote: CryptoCurrencies | FiatCurrencies;
     frequency?: number;
     request: () => Promise<number>;
-    onUpdate?: (price: number) => void;
     onError?: (e: unknown) => void;
 }
 
@@ -25,10 +24,9 @@ class Ticker {
 
     private readonly _frequency: number;
     private readonly _request: () => Promise<number>;
-    private readonly _onUpdate?: (price: number) => void;
     private readonly _onError?: (e: unknown) => void;
 
-    private _price = 0;
+    private _price: number | undefined = undefined;
     private _history: TickerHistory = [];
 
     private _interval: NodeJS.Timeout | undefined = undefined;
@@ -49,7 +47,6 @@ class Ticker {
 
         this._frequency = config.frequency || 1000;
         this._request = config.request;
-        this._onUpdate = config.onUpdate;
         this._onError = config.onError;
     }
 
@@ -59,7 +56,7 @@ class Ticker {
     public get quoteName(): string { return this._quoteName; }
     public get quoteSymbol(): string { return this._quoteSymbol; }
 
-    public get price(): number { return this._price; }
+    public get price(): number | undefined { return this._price; }
     public get history(): TickerHistory { return this._history; }
 
     public get active(): boolean { return this._interval !== undefined; }
@@ -71,14 +68,9 @@ class Ticker {
                 .then(price => {
                     this._price = price;
                     this._history.push({ price, date: new Date() });
-                    if (this._onUpdate) this._onUpdate(price);
                 })
-                .catch(e => {
-                    if (this._onError) this._onError(e);
-                })
-                .finally(() => {
-                    this._fetching = false;
-                });
+                .catch(this._onError)
+                .finally(() => this._fetching = false);
         }
     }
 
@@ -99,7 +91,7 @@ class Ticker {
 
     public reset(): void {
         this.stop();
-        this._price = 0;
+        this._price = undefined;
         this._history = [];
     }
 }
