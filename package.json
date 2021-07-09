@@ -1,6 +1,6 @@
 {
   "name": "@wardenfinance/currency",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "description": "JavaScript library for utilizing fiat and crypto currencies.",
   "main": "dist/index.js",
@@ -29,15 +29,14 @@
     "email": "matthew@warden.finance",
     "url": "https://github.com/matthewdowns"
   },
-  "contributors": [
-    
-  ],
+  "contributors": [],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/wardenfinance/currency/issues"
   },
   "homepage": "https://github.com/wardenfinance/currency#readme",
   "devDependencies": {
+    "@types/jest": "^26.0.23",
     "@types/node": "^16.0.1",
     "@typescript-eslint/eslint-plugin": "^4.26.0",
     "@typescript-eslint/parser": "^4.26.0",
